@@ -1,5 +1,6 @@
 package com.blakekhan.httpmocker.server.proxy;
 
+import com.blakekhan.httpmocker.server.discover.DiscoverController;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.net.URI;
@@ -24,7 +25,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Service
 public class ProxyService {
 
-  private final static Logger logger = Logger.getLogger(ProxyService.class.getName());
+  private final static Logger LOGGER = Logger.getLogger(ProxyService.class.getName());
 
   private final String targetDomain;
   private final int targetPort;
@@ -37,13 +38,15 @@ public class ProxyService {
 
   public ResponseEntity<String> processProxyRequest(String body, HttpMethod method,
       HttpServletRequest request, HttpServletResponse response) throws URISyntaxException {
-    String requestUrl = request.getRequestURI();
+    String requestUrl = request.getRequestURI().replaceFirst(DiscoverController.ENDPOINT_DISCOVER, "");
 
     URI uri = new URI("https", null, targetDomain, targetPort, null, null, null);
     uri = UriComponentsBuilder.fromUri(uri)
         .path(requestUrl)
         .query(request.getQueryString())
         .build(true).toUri();
+
+    LOGGER.info("Sending request to %s".formatted(uri));
 
     HttpHeaders headers = new HttpHeaders();
     Enumeration<String> headerNames = request.getHeaderNames();
@@ -67,11 +70,11 @@ public class ProxyService {
       HttpHeaders responseHeaders = new HttpHeaders();
       responseHeaders.put(HttpHeaders.CONTENT_TYPE,
           Objects.requireNonNull(serverResponse.getHeaders().get(HttpHeaders.CONTENT_TYPE)));
-      logger.info("HEADERS: " + responseHeaders);
-      logger.info("BODY: " + serverResponse.getBody());
+      LOGGER.info("HEADERS: " + responseHeaders);
+      LOGGER.info("BODY: " + serverResponse.getBody());
       return serverResponse;
     } catch (HttpStatusCodeException e) {
-      logger.log(Level.SEVERE, e.getMessage());
+      LOGGER.log(Level.SEVERE, e.getMessage());
       return ResponseEntity.status(e.getStatusCode().value())
           .headers(e.getResponseHeaders())
           .body(e.getResponseBodyAsString());

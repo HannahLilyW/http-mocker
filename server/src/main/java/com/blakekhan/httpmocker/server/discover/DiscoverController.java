@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DiscoverController {
 
-  private static final String ENDPOINT_DISCOVER = "/discover";
+  public static final String ENDPOINT_DISCOVER = "/discover";
 
   private final ProxyService proxyService;
 
