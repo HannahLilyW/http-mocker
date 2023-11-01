@@ -37,7 +37,7 @@ public class ProxyService {
   }
 
   public ResponseEntity<String> processProxyRequest(String body, HttpMethod method,
-      HttpServletRequest request, HttpServletResponse response) throws URISyntaxException {
+      HttpServletRequest request) throws URISyntaxException {
     String requestUrl = request.getRequestURI().replaceFirst(DiscoverController.ENDPOINT_DISCOVER, "");
 
     URI uri = new URI("https", null, targetDomain, targetPort, null, null, null);

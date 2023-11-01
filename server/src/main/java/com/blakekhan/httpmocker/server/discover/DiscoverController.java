@@ -26,8 +26,7 @@ public class DiscoverController {
   public DiscoverResponse<String> handleRequest(@RequestBody(required = false) String body,
       HttpMethod method, HttpServletRequest request, HttpServletResponse response)
       throws URISyntaxException {
-    ResponseEntity<String> proxyResponse = proxyService.processProxyRequest(body, method, request,
-        response);
+    ResponseEntity<String> proxyResponse = proxyService.processProxyRequest(body, method, request);
     DiscoverResponse<String> discoverResponse = new DiscoverResponse<>();
     discoverResponse.setHttpStatusCode(proxyResponse.getStatusCode().value());
     discoverResponse.setHeaders(proxyResponse.getHeaders().toSingleValueMap());
