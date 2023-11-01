@@ -12,12 +12,32 @@
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "http-mocker.helloWorld",
-        "title": "Hello World"
-      }
-    ]
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "http-mocker",
+          "title": "HTTP Mocker",
+          "icon": "icons/mockface.svg"
+        }
+      ]
+    },
+    "views": {
+      "http-mocker": [
+        {
+          "type": "webview",
+          "id": "http-mocker-enabled",
+          "name": "Enable/Disable Mocker"
+        },
+        {
+          "id": "discover-paths",
+          "name": "Discover Paths"
+        },
+        {
+          "id": "mock-endpoints",
+          "name": "Mock Endpoints"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
