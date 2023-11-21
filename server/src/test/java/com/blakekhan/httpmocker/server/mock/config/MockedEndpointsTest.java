@@ -17,7 +17,7 @@ public class MockedEndpointsTest {
     InputStreamReader reader = new InputStreamReader(new FileInputStream(endpointsFile));
     List<MockedEndpoint> list = MockedEndpoints.fromInputStreamReader(reader);
 
-    Assertions.assertEquals(2, list.size());
+    Assertions.assertEquals(3, list.size());
     List<MockedResponse> responses = list.get(0).getResponses();
 
     Assertions.assertEquals("/hello-world", list.get(0).getEndpoint());
