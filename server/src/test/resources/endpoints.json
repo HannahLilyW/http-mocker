@@ -54,6 +54,22 @@
     ]
   },
   {
+    "endpoint": "/hello-world",
+    "httpMethod": "POST",
+    "responses": [
+      {
+        "name": "Match no query or header",
+        "responseHttpCode": 200,
+        "queryParameters": {},
+        "requestHeaders": {},
+        "responseHeaders": {
+          "response-name": "Response 6"
+        },
+        "body": "{\"text\": \"this is a sample response body 6\"}"
+      }
+    ]
+  },
+  {
     "endpoint": "/hello/world",
     "httpMethod": "GET",
     "responses": [

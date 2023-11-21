@@ -45,14 +45,14 @@ public class MockConfigService {
     }
   }
 
-  private Optional<MockedEndpoint> getMockedEndpointFor(String path) {
+  private Optional<MockedEndpoint> getMockedEndpointFor(String path, String httpMethod) {
     return endpoints.stream()
-        .filter(e -> e.getEndpoint().equalsIgnoreCase(path))
+        .filter(e -> e.getEndpoint().equalsIgnoreCase(path) && e.getHttpMethod().matches(httpMethod))
         .findFirst();
   }
 
-  public Optional<MockedResponse> getMockedResponseFor(String path, Map<String, String> requestHeaders, Map<String, String> requestParams) {
-    Optional<MockedEndpoint> optionalEndpoint = getMockedEndpointFor(path);
+  public Optional<MockedResponse> getMockedResponseFor(String path, String httpMethod, Map<String, String> requestHeaders, Map<String, String> requestParams) {
+    Optional<MockedEndpoint> optionalEndpoint = getMockedEndpointFor(path, httpMethod);
 
     LOGGER.info(String.format("Finding response for endpoint %s, headers %s, params %s.", path, requestHeaders, requestParams));
 

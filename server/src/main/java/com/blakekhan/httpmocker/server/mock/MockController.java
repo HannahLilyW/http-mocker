@@ -2,6 +2,7 @@ package com.blakekhan.httpmocker.server.mock;
 
 import com.blakekhan.httpmocker.server.mock.config.MockedResponse;
 import com.blakekhan.httpmocker.server.mock.service.MockConfigService;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ public class MockController {
   }
 
   @RequestMapping(value = "/{*endpoint}")
-  public ResponseEntity<String> handle(@PathVariable String endpoint, @RequestHeader Map<String, String> headers, @RequestParam Map<String,String> requestParams) {
-    Optional<MockedResponse> optionalResponse = mockConfigService.getMockedResponseFor(endpoint, headers, requestParams);
+  public ResponseEntity<String> handle(final HttpServletRequest request, @PathVariable String endpoint, @RequestHeader Map<String, String> headers, @RequestParam Map<String,String> requestParams) {
+    Optional<MockedResponse> optionalResponse = mockConfigService.getMockedResponseFor(endpoint, request.getMethod(), headers, requestParams);
     if (optionalResponse.isEmpty()) {
       return new ResponseEntity<>("No configured mocked response fits this request.", HttpStatus.NOT_FOUND);
     }
