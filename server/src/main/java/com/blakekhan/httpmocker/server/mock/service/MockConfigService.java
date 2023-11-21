@@ -41,7 +41,7 @@ public class MockConfigService {
     this.endpoints.addAll(MockedEndpoints.fromInputStreamReader(new InputStreamReader(new FileInputStream(mockedEndpointsFile))));
     LOGGER.info(String.format("Loaded %s mocked endpoints.", endpoints.size()));
     for (MockedEndpoint endpoint : endpoints) {
-      LOGGER.info(String.format("Endpoint %s has %d configured responses.", endpoint.getEndpoint(), endpoint.getResponses().size()));
+      LOGGER.info(String.format("Endpoint %s %s has %d configured responses.", endpoint.getHttpMethod().name(), endpoint.getEndpoint(), endpoint.getResponses().size()));
     }
   }
 
