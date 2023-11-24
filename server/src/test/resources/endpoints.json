@@ -1,0 +1,88 @@
+[
+  {
+    "endpoint": "/hello-world",
+    "httpMethod": "GET",
+    "responses": [
+      {
+        "name": "Match no query or header",
+        "responseHttpCode": 200,
+        "queryParameters": {},
+        "requestHeaders": {},
+        "responseHeaders": {
+          "response-name": "Response 1"
+        },
+        "body": "{\"text\": \"this is a sample response body 1\"}"
+      },
+      {
+        "name": "Only Query Param Match",
+        "responseHttpCode": 200,
+        "queryParameters": {
+          "name": "bob"
+        },
+        "requestHeaders": {},
+        "responseHeaders": {
+          "response-name": "Response 2"
+        },
+        "body": "{\"text\": \"this is a sample response body 2\"}"
+      },
+      {
+        "name": "Only Header Match",
+        "responseHttpCode": 200,
+        "queryParameters": {},
+        "requestHeaders": {
+          "match-me": "abc"
+        },
+        "responseHeaders": {
+          "response-name": "Response 3"
+        },
+        "body": "{\"text\": \"this is a sample response body 3\"}"
+      },
+      {
+        "name": "Both Query and Header Match",
+        "responseHttpCode": 200,
+        "queryParameters": {
+          "name": "bob"
+        },
+        "requestHeaders": {
+          "match-me": "abc"
+        },
+        "responseHeaders": {
+          "response-name": "Response 4"
+        },
+        "body": "{\"text\": \"this is a sample response body 4\"}"
+      }
+    ]
+  },
+  {
+    "endpoint": "/hello-world",
+    "httpMethod": "POST",
+    "responses": [
+      {
+        "name": "Match no query or header",
+        "responseHttpCode": 200,
+        "queryParameters": {},
+        "requestHeaders": {},
+        "responseHeaders": {
+          "response-name": "Response 6"
+        },
+        "body": "{\"text\": \"this is a sample response body 6\"}"
+      }
+    ]
+  },
+  {
+    "endpoint": "/hello/world",
+    "httpMethod": "GET",
+    "responses": [
+      {
+        "name": "Match no query or header",
+        "responseHttpCode": 200,
+        "queryParameters": {},
+        "requestHeaders": {},
+        "responseHeaders": {
+          "response-name": "Response 5"
+        },
+        "body": "{\"text\": \"this is a sample response body 5\"}"
+      }
+    ]
+  }
+]
