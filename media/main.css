@@ -2,8 +2,8 @@
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 30px;
+    height: 17px;
 }
 
 /* Hide default HTML checkbox */
@@ -29,30 +29,101 @@
 .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
+    height: 13px;
+    width: 13px;
+    left: 2px;
+    bottom: 2px;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
 }
 
 input:checked+.slider {
-    background-color: #32de84;
+    background-color: #006400;
 }
 
 input:checked+.slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(13px);
+    -ms-transform: translateX(13px);
+    transform: translateX(13px);
 }
 
 /* Rounded sliders */
 .slider.round {
-    border-radius: 34px;
+    border-radius: 17px;
 }
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+.header {
+    background-color: #272822;
+    width: 100%;
+    margin: 4px 0px;
+    padding: 4px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.editable {
+    background-color: #272822;
+    padding: 4px;
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+input {
+    background-color: #272822;
+    color: white;
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+.endpoint-info {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    line-height: 2;
+}
+
+.body {
+    margin-left: 8px;
+}
+
+.info {
+    opacity: 50%;
+}
+
+.open {
+    transform: rotate(90deg);
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+#clearLog {
+    background-color: #A52A2A;
+    border-radius: 4px;
+    color: white;
+    float: right;
+    padding: 4px;
+}
+
+.add-endpoint-button {
+    background-color: #006400;
+    border-radius: 4px;
+    color: white;
+    padding: 4px;
+}
+
+.delete-endpoint-button {
+    background-color: #A52A2A;
+    border-radius: 4px;
+    color: white;
+    padding: 4px;
 }
